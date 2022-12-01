@@ -1,30 +1,45 @@
-import { ActionBar } from '@nativescript/core';
+import { ActionBar, Color, isIOS } from '@nativescript/core';
 import { RouteProp } from '@react-navigation/core';
-import React from 'react';
-import { StyleSheet } from "react-nativescript";
+import React, { useEffect } from 'react';
+import * as Page from "@nativescript-community/systemui/systemui.ios";
 import { FrameNavigationProp } from "react-nativescript-navigation";
 
 import { MainStackParamList } from "../NavigationParamList";
 
+Page.overridePageBase()
 type ScreenOneProps = {
     route: RouteProp<MainStackParamList, "One">,
     navigation: FrameNavigationProp<MainStackParamList, "One">,
 };
 
+const setIOSStatusBar = () => {
+    if (isIOS) {
+        let statusBar = new UIView({ frame: UIApplication.sharedApplication.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? new CGRect() })
+
+        statusBar.backgroundColor = new UIColor({ red: 23.0 / 255.0, green: 112.0 / 255.0, blue: 222.0 / 255.0, alpha: 1.0 })
+        UIApplication.sharedApplication.keyWindow?.addSubview(statusBar)
+    }
+}
+
+const removeIOSStatusBar = () => {
+    if (isIOS)
+        UIApplication.sharedApplication.keyWindow?.subviews[1]?.removeFromSuperview()
+}
+
 export function ScreenOne({ navigation }: ScreenOneProps) {
     return (
         <parallaxView bounce controlsToFade="headerLabel,headerLabel2"
             onLoaded={(args) => {
-                args.object.on('anchored', () => console.log('anchored'))
-                args.object.on('unanchored', () => console.log('unanchored'))
-                args.object.on('scroll', () => console.log('scroll'))
+                args.object.on('anchored', () => setIOSStatusBar())
+                args.object.on('unanchored', () => removeIOSStatusBar())
+                //args.object.on('scroll', () => console.log('scroll'))
             }}>
             <parallaxHeader className="header-template" height="200">
                 <label id="headerLabel" text="Parallax" />
                 <label id="headerLabel2" text="Header Component" />
             </parallaxHeader>
             <parallaxAnchored className="anchor" iosIgnoreSafeArea>
-                <label id="titleLabel" text="Mr. Anchor" />
+                <label id="titleLabel" marginTop={15} text="Mr. Anchor" />
             </parallaxAnchored>
             <parallaxContent class="body-template">
                 <label text="Content" class="header" textWrap="true" />
