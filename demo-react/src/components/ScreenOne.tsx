@@ -19,8 +19,8 @@ export function ScreenOne({ navigation }: ScreenOneProps) {
                 args.object.on('unanchored', () => console.log('unanchored'))
                 args.object.on('scroll', () => console.log('scroll'))
             }}>
-            <parallaxHeader class="header-template" height="300">
-                <label id="headerLabel" backgroundColor="purple" text="Parallax" width="100%" />
+            <parallaxHeader className="header-template" height="200">
+                <label id="headerLabel" text="Parallax" />
                 <label id="headerLabel2" text="Header Component" />
             </parallaxHeader>
             <parallaxAnchored className="anchor" iosIgnoreSafeArea>

@@ -1,6 +1,6 @@
 {
   "name": "@nativescript-community/ui-parallax",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NativeScript Parallax View Plugin.",
   "main": "nativescript-parallax.js",
   "private": false,

@@ -23,11 +23,11 @@ declare global {
 
 export const registerParallax = () => {
     // @ts-ignore
-    registerElement('parallaxView', () => new require('nativescript-parallax').ParallaxView)
+    registerElement('parallaxView', () => new require('@nativescript-community/ui-parallax').ParallaxView)
     // @ts-ignore
-    registerElement('parallaxAnchored', () => new require('nativescript-parallax').Anchored)
+    registerElement('parallaxAnchored', () => new require('@nativescript-community/ui-parallax').Anchored)
     // @ts-ignore
-    registerElement('parallaxContent', () => new require('nativescript-parallax').Content)
+    registerElement('parallaxContent', () => new require('@nativescript-community/ui-parallax').Content)
     // @ts-ignore
-    registerElement('parallaxHeader', () => new require('nativescript-parallax').Header)
+    registerElement('parallaxHeader', () => new require('@nativescript-community/ui-parallax').Header)
 }
